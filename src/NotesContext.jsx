@@ -4,26 +4,31 @@ const NotesContext = createContext()
 
 export const NotesProvider = ({children}) => {
     const [notes, setNotes] = useState([
-        {id: 1, title: "First Note", content: "This is the content of the first note.", category: "General"}
+        {id: 1, title: "First Note", content: "This is the content of the first note.", category: "General"},
+        {id: 2, title: "Second Note", content: "This is the content of the second note.", category: "Work"},
+        {id: 3, title: "Third Note", content: "This is the content of the third note.", category: "Personal"}
     ])
 
+    const [selectedNoteId, setSelectedNoteId] = useState('');
 
     const addNote = (note) => {
     };
 
     const deleteNote = (id) => {
-
+        setNotes(notes.filter(note => note.id !== id));
     };
 
     const editNote = (id, updatedNote) => {
-
+        setNotes(notes.map(note => note.id === id ? {...note, ...updatedNote} : note));
     };
 
     const value = {
         notes,
         addNote,
         deleteNote,
-        editNote
+        editNote,
+        selectedNoteId,
+        setSelectedNoteId
     }
 
     return (

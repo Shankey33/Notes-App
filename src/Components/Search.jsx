@@ -1,9 +1,17 @@
-import React from 'react'
+import { useNotes } from '../NotesContext'
+import { useState, useEffect} from 'react'
 
-const Search = () => {
+const Search = ({setSearchTerm}) => {
+  const [searchTerm, setLocalSearchTerm] = useState('');
+
+  useEffect(() => {
+    setSearchTerm(searchTerm);
+  }, [searchTerm, setSearchTerm]);
+  
+
   return (
-    <div>
-      
+    <div className='search-container'>
+        <input type="text" placeholder='Search notes...' value={searchTerm} onChange={e => setLocalSearchTerm(e.target.value)} />
     </div>
   )
 }
