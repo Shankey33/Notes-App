@@ -34,8 +34,8 @@ const List = () => {
 
     return (
     <div className='list-container'>
+        <div className="notes-container-search-bar">
         <Search setSearchTerm={setSearchTerm}/>
-        <div className="add-note">
         <i className="fa-solid fa-circle-plus" onClick={handleAddNote}></i>
         </div>
         <div className='notes-list'>

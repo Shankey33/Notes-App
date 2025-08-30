@@ -2,4 +2,93 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    color: white;
+}
+
+
+body{
+    background-color: black;
+}
+
+.app{
+    margin: 20px 50px 20px 50px;
+}
+
+.header{
+    background-color: #302D2D;
+    border-radius: 10px;
+    padding: 10px 20px 10px 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    font-size:xx-large
+}
+
+.note-section{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+    height: 85vh;
+}
+
+
+.list-container{
+    width: 30%;
+    margin-top: 20px;
+    background-color: #302D2D;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.notes-container-search-bar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #222222;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.notes-container-search-bar input{
+    width: 170%;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background-color: #302D2D;
+    color: white;
+}
+
+.notes-list{
+    margin-top: 30px;
+    padding: 10px;
+}
+
+.category-container{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+.note-card-list{
+    background-color: #222222;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+.note-container{
+    width: 65%;
+    background-color: #302D2D;
+    margin-top: 20px;
+    border-radius: 15px;
+    padding: 20px;
 }

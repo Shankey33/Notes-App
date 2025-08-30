@@ -9,8 +9,10 @@ const App = () => {
     <NotesProvider>
     <div className='app'>
       <Header />
-      <List />
-      <Note />
+      <div className="note-section">
+        <List />
+        <Note />
+      </div>
     </div>
     </NotesProvider>
   )

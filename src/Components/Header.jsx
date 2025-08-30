@@ -2,7 +2,7 @@ import React from 'react'
 
 const Header = () => {
   return (
-    <div>
+    <div className='header'>
         <h4>Notes App</h4>
         <span><i className="fa-slab fa-regular fa-clipboard"></i></span>
     </div>
