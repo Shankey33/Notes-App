@@ -6,7 +6,7 @@ import { useState } from 'react'
 const List = () => {
     
     const [searchTerm, setSearchTerm] = useState('');
-    const {notes, setSelectedNoteId} = useNotes();
+    const {notes, setSelectedNoteId, setIsNew} = useNotes();
 
     const groupedNotes = notes.reduce((groups, note) => {
         const category = note.category || 'General';
@@ -27,14 +27,16 @@ const List = () => {
     }
 
     const handleAddNote = () => {
-
+        setSelectedNoteId('');
+        setIsNew(true);
     }
+
 
     return (
     <div className='list-container'>
         <Search setSearchTerm={setSearchTerm}/>
         <div className="add-note">
-            <i className="fa-light fa-plus" onClick={handleAddNote}></i>
+        <i className="fa-solid fa-circle-plus" onClick={handleAddNote}></i>
         </div>
         <div className='notes-list'>
             

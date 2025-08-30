@@ -1,4 +1,3 @@
-import { useNotes } from '../NotesContext'
 import { useState, useEffect} from 'react'
 
 const Search = ({setSearchTerm}) => {
@@ -7,7 +6,6 @@ const Search = ({setSearchTerm}) => {
   useEffect(() => {
     setSearchTerm(searchTerm);
   }, [searchTerm, setSearchTerm]);
-  
 
   return (
     <div className='search-container'>

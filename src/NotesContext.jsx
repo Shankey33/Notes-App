@@ -1,17 +1,29 @@
-import React, {createContext, useContext, useState} from 'react'
+import React, {createContext, useContext, useState, useEffect} from 'react'
 
 const NotesContext = createContext()
 
 export const NotesProvider = ({children}) => {
-    const [notes, setNotes] = useState([
-        {id: 1, title: "First Note", content: "This is the content of the first note.", category: "General"},
-        {id: 2, title: "Second Note", content: "This is the content of the second note.", category: "Work"},
-        {id: 3, title: "Third Note", content: "This is the content of the third note.", category: "Personal"}
-    ])
+    const [notes, setNotes] = useState([]);
 
     const [selectedNoteId, setSelectedNoteId] = useState('');
 
+    const [isNew, setIsNew] = useState(false);
+
+    useEffect(() => {
+        const storedNotes = JSON.parse(localStorage.getItem('notes'));
+        if (storedNotes && storedNotes.length > 0) {
+            setNotes(storedNotes);
+        }
+    }, []);
+
+    
+    useEffect(() => {
+        localStorage.setItem('notes', JSON.stringify(notes));
+    }, [notes]);
+
     const addNote = (note) => {
+        setNotes([...notes, note]);
+        setIsNew(false);
     };
 
     const deleteNote = (id) => {
@@ -28,7 +40,9 @@ export const NotesProvider = ({children}) => {
         deleteNote,
         editNote,
         selectedNoteId,
-        setSelectedNoteId
+        setSelectedNoteId,
+        isNew, 
+        setIsNew
     }
 
     return (
