@@ -47,16 +47,18 @@ const Note = () => {
   return (
     <div className='note-container'>
       {isNew === false? selectedNote && (
-          <><div className="selected-note-title-bar">
+        <>
+        <div className="selected-note-title-bar">
           <input type="text" value={selectedNote.title} onChange={e => handleTitleChange(e)}/>
-          <button onClick={() => handleNoteDelete(selectedNote.id)}><i className="fa-solid fa-trash"></i></button>
-        </div><div className="selected-note-content">
+          <i className="fa-solid fa-trash" id="trash" onClick={() => handleNoteDelete(selectedNote.id)}></i>
+        </div>
+        <div className="selected-note-content">
           <textarea value={selectedNote.content} onChange={e => handleContentChange(e)}></textarea>
         </div>
         <div className="selected-note-category">
           <input type="text" value={selectedNote.category} onChange={e => handleCategoryChange(e)} />
         </div>  
-        </>
+      </>
       ):(
       <>
         <div className="new-note-title">
@@ -65,11 +67,15 @@ const Note = () => {
         <div className="new-note-content">
           <textarea placeholder='Note Content goes here....' value={editedNote.content} onChange={e => setEditedNote(prevState => ({...prevState, content: e.target.value}))} />
         </div>
-        <div className="new-note-category">
-          <input type="text" placeholder='Category' value={editedNote.category} onChange={e => setEditedNote(prevState => ({...prevState, category: e.target.value}))} />
+        <div className="new-note-actions">
+          <div className="new-note-buttons">
+            <button onClick={handleAddNote}>Add Note</button>
+            <button onClick={() => setIsNew(false)}>Cancel</button>
+          </div>
+          <div className="new-note-category">
+            <input type="text" placeholder='Category' value={editedNote.category} onChange={e => setEditedNote(prevState => ({...prevState, category: e.target.value}))} />
+          </div>
         </div>
-        <button onClick={handleAddNote}>Add Note</button>
-        <button onClick={() => setIsNew(false)}>Cancel</button>
       </> 
       )}        
     </div>

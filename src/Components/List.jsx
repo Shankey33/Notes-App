@@ -6,7 +6,7 @@ import { useState } from 'react'
 const List = () => {
     
     const [searchTerm, setSearchTerm] = useState('');
-    const {notes, setSelectedNoteId, setIsNew} = useNotes();
+    const {notes, setSelectedNoteId, setIsNew, isMobileMenuOpen, setIsMobileMenuOpen} = useNotes();
 
     const groupedNotes = notes.reduce((groups, note) => {
         const category = note.category || 'General';
@@ -24,29 +24,31 @@ const List = () => {
 
     const handleNoteCardClick = (id) => {
         setSelectedNoteId(id);
+        // Close mobile menu when note is selected on mobile
+        setIsMobileMenuOpen && setIsMobileMenuOpen(false);
     }
 
     const handleAddNote = () => {
         setSelectedNoteId('');
         setIsNew(true);
+        // Close mobile menu when adding new note on mobile
+        setIsMobileMenuOpen && setIsMobileMenuOpen(false);
     }
 
-
     return (
-    <div className='list-container'>
+    <div className={`list-container${isMobileMenuOpen ? ' mobile-menu-open' : ''}`}>
         <div className="notes-container-search-bar">
         <Search setSearchTerm={setSearchTerm}/>
         <i className="fa-solid fa-circle-plus" onClick={handleAddNote}></i>
         </div>
         <div className='notes-list'>
-            
             <div className="category-container">
             
             {searchedNotes !== null ?
             searchedNotes.map(note => (
                 <div className="note-card-list" key={note.id} onClick={() =>handleNoteCardClick(note.id)}>
-                    <p>{note.title}</p>
-                    <p>{note.content}</p>
+                    <p>{note.title.length > 50 ? note.title.slice(0, 30) + "..." : note.title}</p>
+                    <p>{note.content.length > 70 ? note.content.slice(0, 70)+"..." : note.content}</p>
                 </div>
             ))  
             :
@@ -55,8 +57,8 @@ const List = () => {
                     <p>{category}</p>
                     {notesInCategory.map(note => (
                         <div key={note.id} className="note-card-list" onClick={() => handleNoteCardClick(note.id)}>
-                            <p>{note.title}</p>
-                            <p>{note.content}</p>
+                            <p>{note.title.length > 50 ? note.title.slice(0, 30) + "..." : note.title}</p>
+                            <p>{note.content.length > 70 ? note.content.slice(0, 70)+"..." : note.content}</p>
                         </div>
             ))}
                 </div>

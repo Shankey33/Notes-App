@@ -9,6 +9,8 @@ export const NotesProvider = ({children}) => {
 
     const [isNew, setIsNew] = useState(false);
 
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
     useEffect(() => {
         const storedNotes = JSON.parse(localStorage.getItem('notes'));
         if (storedNotes && storedNotes.length > 0) {
@@ -42,7 +44,9 @@ export const NotesProvider = ({children}) => {
         selectedNoteId,
         setSelectedNoteId,
         isNew, 
-        setIsNew
+        setIsNew,
+        isMobileMenuOpen,
+        setIsMobileMenuOpen
     }
 
     return (
